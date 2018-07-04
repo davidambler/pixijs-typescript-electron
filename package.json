@@ -1,0 +1,45 @@
+{
+  "name": "pixi-leeched",
+  "version": "0.0.1",
+  "description": "Leeched",
+  "main": "dist/main.js",
+  "author": "David Ambler",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@types/fpsmeter": "^0.3.29",
+    "@types/node": "^10.5.1",
+    "@types/pixi.js": "^4.8.0",
+    "concurrently": "^3.6.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "electron": "^2.0.4",
+    "electron-builder": "^20.19.1",
+    "fpsmeter": "^0.3.1",
+    "html-webpack-plugin": "^3.2.0",
+    "rimraf": "^2.6.2",
+    "source-map-loader": "^0.2.3",
+    "ts-lint": "^4.5.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^2.9.2",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4",
+    "write-file-webpack-plugin": "^4.3.2"
+  },
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "webpack-dev-server": "webpack-dev-server --open",
+    "start": "concurrently --kill-others \"yarn run window-dev\" \"yarn run game-dev\"",
+    "window-dev": "cross-env NODE_ENV=development webpack --config ./config/webpack.window.config.js -w",
+    "window-dist": "cross-env NODE_ENV=production webpack --config ./config/webpack.window.config.js",
+    "game-dev": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.game.config.js --inline",
+    "game-dist": "cross-env NODE_ENV=production webpack --config ./config/webpack.game.config.js",
+    "game-build": "cross-env NODE_ENV=development webpack --config ./config/webpack.game.config.js",
+    "prepackage": "yarn clean && yarn window-dist && yarn game-dist",
+    "package": "build"
+  },
+  "dependencies": {
+    "pixi.js": "^4.8.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {},
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "bin",
+      "lib/*generated.js",
+      "dist/*.js",
+      "/node_modules/",
+      "webpack.*",
+      "*.d.ts"
+    ]
+  }
+}
